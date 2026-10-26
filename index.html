@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe5ef">
+<title>Happy Birthday, Debadrita! 🎀</title>
+<style>
+:root{--pink:#ff77a8;--hot:#f04d88;--light:#fff0f6;--deep:#9f315d;--cream:#fffafc}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",system-ui,sans-serif;color:#7b3152;background:radial-gradient(circle at 15% 10%,#fff 0 3%,transparent 18%),linear-gradient(135deg,#ffe5ef,#fff5f9 48%,#ffd8e8);min-height:100vh;overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0}
+.hidden{display:none!important}
+#balloons{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.balloon{position:absolute;bottom:-150px;width:46px;height:58px;border-radius:50% 50% 46% 46%;opacity:.78;animation:floatUp linear infinite}
+.balloon:before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:inherit;bottom:-4px;left:20px}
+.balloon:after{content:"";position:absolute;width:1px;height:75px;background:#d89bb3;top:60px;left:23px}
+@keyframes floatUp{to{transform:translateY(-125vh) rotate(12deg)}}
+main{position:relative;z-index:1;max-width:920px;margin:auto;padding:28px 16px 55px;text-align:center}
+.pill{display:inline-block;background:#ffffffb8;border:1px solid #ffc3d9;border-radius:999px;padding:8px 15px;font-size:.9rem;letter-spacing:.03em}
+h1{font-family:Georgia,serif;font-size:clamp(2.5rem,8vw,5rem);line-height:1.02;margin:20px 0 12px;color:#e64e88;text-shadow:2px 3px 0 white}
+h1 span{display:block;color:#9f4970;font-size:.65em;margin-top:10px}
+.subtitle{font-size:1.08rem;max-width:600px;margin:0 auto 24px;line-height:1.6}
+.panel{background:#ffffffc9;border:1px solid #ffd0e1;border-radius:28px;padding:clamp(18px,4vw,32px);box-shadow:0 15px 45px #d94c8020;margin:20px auto;max-width:760px;backdrop-filter:blur(7px)}
+.primary{background:linear-gradient(135deg,#ff6da2,#e94885);color:white;border-radius:999px;padding:14px 23px;box-shadow:0 7px 0 #c83b70;font-weight:800;transition:transform .15s}
+.primary:hover{transform:translateY(-2px)}
+.secondary{background:#fff;color:#b53b70;border:1px solid #ffb4d0;border-radius:999px;padding:11px 17px;font-weight:700}
+.emoji{font-size:1.6rem}
+.decor{font-size:2rem;letter-spacing:.25em;margin:14px}
+.characters{display:flex;justify-content:center;align-items:end;gap:12px;margin:12px auto 18px}
+.char{position:relative;width:116px;height:125px;border-radius:48% 48% 43% 43%;border:3px solid #68483e;box-shadow:inset 0 -9px #00000008;display:flex;justify-content:center;align-items:center}
+.bear{background:#c99576;transform:rotate(-4deg)}
+.panda{background:#fff;border-color:#59494c;transform:rotate(4deg)}
+.ear{position:absolute;top:-12px;width:35px;height:35px;border-radius:50%;background:#c99576;border:3px solid #68483e;z-index:-1}
+.bear .ear.left{left:-5px}.bear .ear.right{right:-5px}
+.panda .ear{background:#29242b;border-color:#29242b}.panda .ear.left{left:-5px}.panda .ear.right{right:-5px}
+.eye{position:absolute;top:47px;width:9px;height:12px;border-radius:50%;background:#49312f}
+.eye.left{left:29px}.eye.right{right:29px}
+.panda .eye{width:18px;height:23px;background:#29242b;transform:rotate(28deg);top:43px}
+.panda .eye:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:white;top:4px;left:4px}
+.blush{position:absolute;top:68px;width:19px;height:11px;border-radius:50%;background:#f28da7a8}
+.blush.left{left:13px}.blush.right{right:13px}
+.mouth{position:absolute;top:65px;font-size:20px;color:#49312f;font-weight:bold}
+.bow{position:absolute;top:-12px;right:13px;font-size:27px;z-index:2}
+.heart{color:#ed5a91;font-size:25px;align-self:center;animation:beat 1s infinite alternate}
+@keyframes beat{to{transform:scale(1.25)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px;text-align:left}
+label.upload{display:inline-block;background:#fff;border:1px dashed #ef8eb2;padding:12px 15px;border-radius:16px;color:#b53b70;font-weight:700;cursor:pointer}
+#photoPreview{display:none;width:100%;max-height:330px;object-fit:contain;border-radius:18px;margin-top:12px;background:#fff4f8}
+#photoPlaceholder{border:2px dashed #f5b0ca;border-radius:18px;padding:24px;text-align:center;background:#fff8fb}
+.cake-area{display:flex;justify-content:center;align-items:center;min-height:180px}
+.cake{position:relative;width:190px;height:145px;cursor:pointer;transition:transform .25s;outline:none}
+.cake:hover{transform:scale(1.04)}
+.cake .base{position:absolute;bottom:9px;left:12px;width:166px;height:72px;background:#f5a0bd;border:3px solid #d75c8c;border-radius:12px 12px 24px 24px;box-shadow:inset 0 -13px #e87fa4}
+.cake .top{position:absolute;bottom:66px;left:12px;width:166px;height:36px;background:#fff0f5;border:3px solid #d75c8c;border-radius:50%}
+.cake .drip{position:absolute;bottom:55px;left:25px;width:22px;height:24px;background:#fff0f5;border-radius:0 0 12px 12px;border-left:2px solid #d75c8c;border-right:2px solid #d75c8c}
+.candle{position:absolute;bottom:95px;left:91px;width:10px;height:38px;border-radius:4px;background:repeating-linear-gradient(135deg,#fff 0 5px,#ff79a8 5px 10px);border:1px solid #e65b8c}
+.flame{position:absolute;bottom:130px;left:88px;font-size:23px;animation:flicker .35s infinite alternate}
+@keyframes flicker{to{transform:scale(1.15) rotate(5deg)}}
+.cake.cut .base{clip-path:polygon(0 0,45% 0,60% 30%,48% 48%,60% 70%,45% 100%,0 100%)}
+.cake.cut{transform:rotate(-3deg)}
+.note{font-family:Georgia,serif;font-size:1.12rem;line-height:1.85;white-space:pre-line}
+.signature{font-size:1.3rem;color:#e64e88;font-family:Georgia,serif}
+footer{font-size:.85rem;opacity:.75;margin-top:30px}
+.confetti{position:fixed;top:-20px;width:9px;height:14px;z-index:10;pointer-events:none;animation:fall 3.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:.2}}
+input[type=file]{display:none}
+@media(max-width:480px){.char{width:92px;height:104px}.eye.left{left:22px}.eye.right{right:22px}.panda .eye{top:37px}.blush{top:60px}.mouth{top:57px}.panel{border-radius:22px}}
+
+.photo-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.photo-card{margin:0;background:#fff7fb;padding:7px;border:1px solid #ffd0e1;border-radius:18px;overflow:hidden;box-shadow:0 7px 20px #d94c8012}
+.photo-card img{display:block;width:100%;height:260px;object-fit:cover;border-radius:12px}
+.photo-card figcaption{text-align:center;padding:9px 3px 5px;font-size:.88rem;color:#b53b70;font-weight:700}
+.gallery-panel{text-align:center}
+@media(max-width:560px){.photo-gallery{grid-template-columns:1fr 1fr;gap:8px}.photo-card img{height:190px}.photo-card{padding:5px}}
+
+</style>
+</head>
+<body>
+<div id="balloons" aria-hidden="true"></div>
+<main>
+  <div class="pill">🎀 A little birthday surprise 🎀</div>
+  <div class="decor">♡ ✧ 🎈 ✧ ♡</div>
+  <section id="intro" class="panel">
+    <div class="characters" aria-label="Cute bear and panda">
+      <div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div>
+      <div class="heart">♥</div>
+      <div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div>
+    </div>
+    <h1>Hey, Debadrita! <span>It's your special day ✨</span></h1>
+    <p class="subtitle">Someone made a tiny pink world just for you. Ready to open your surprise? 💗</p>
+    <button class="primary" id="openBtn">🎁 Open Your Surprise</button>
+  </section>
+
+  <div id="surprise" class="hidden">
+    <h1>Happy Birthday!<span>Debadrita 🎂💖</span></h1>
+    <p class="subtitle">May your day be full of smiles, love, laughter and lovely little memories. 🎀</p>
+    <div class="panel">
+      <div class="characters">
+        <div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div>
+        <div class="heart">♥</div>
+        <div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div>
+      </div>
+      <div class="decor">🎈 💕 🎈</div>
+      <h2>Make a wish, birthday girl! 🌟</h2>
+      <p>Tap the cake to cut it and celebrate! 👇</p>
+      <div class="cake-area">
+        <div class="cake" id="cake" role="button" tabindex="0" aria-label="Cut the birthday cake">
+          <div class="base"></div><div class="top"></div><div class="drip"></div><div class="candle"></div><div class="flame" id="flame">🔥</div>
+        </div>
+      </div>
+      <p id="cakeMessage">Tap the cake to cut it! 🎂</p>
+      <button class="secondary" id="musicBtn">🎵 Play birthday tune</button>
+    </div>
+
+    <div class="grid">
+      <section class="panel gallery-panel">
+        <h2>📸 Little moments, lots of memories</h2>
+        <p>A little gallery made just for you, Debadrita. 💗</p>
+        <div class="photo-gallery">
+          <figure class="photo-card"><img src="photos/debadrita-01.jpg" alt="Debadrita birthday memory 1" loading="lazy"><figcaption>Memory #1 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-02.jpg" alt="Debadrita birthday memory 2" loading="lazy"><figcaption>Memory #2 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-03.jpg" alt="Debadrita birthday memory 3" loading="lazy"><figcaption>Memory #3 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-04.jpg" alt="Debadrita birthday memory 4" loading="lazy"><figcaption>Memory #4 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-05.jpg" alt="Debadrita birthday memory 5" loading="lazy"><figcaption>Memory #5 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-06.jpg" alt="Debadrita birthday memory 6" loading="lazy"><figcaption>Memory #6 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-07.jpg" alt="Debadrita birthday memory 7" loading="lazy"><figcaption>Memory #7 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-08.jpg" alt="Debadrita birthday memory 8" loading="lazy"><figcaption>Memory #8 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-09.jpg" alt="Debadrita birthday memory 9" loading="lazy"><figcaption>Memory #9 💗</figcaption></figure>
+          <figure class="photo-card"><img src="photos/debadrita-10.jpg" alt="Debadrita birthday memory 10" loading="lazy"><figcaption>Memory #10 💗</figcaption></figure>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>💌 A little birthday letter</h2>
+        <div class="note">Happiest Birthday re, Debadrita! 🎂❤️
+
+God bless you always. Hope your day is filled with happiness, laughter and lots of beautiful memories. ✨
+
+R sotti bolchi, tor sathe ghurte ba kothao jete gele je ki poriman moja hoy, setar kono tulonai nei! 😂💗 Ichhe kore, evabei shob shomoy hashi-khushi ar moja korte korte amader din gulo kete jak.
+
+Ar ei bhabei shob shomoy ekta bhalo bondhu hoye pashe thakis. Tor sathe aro onek sundor sundor memory banano baki ache! 🫂💖
+
+Have a blast re! Always keep smiling! 🫶🏻
+
+<span class="signature">Once again, Happiest Birthday! 🎉💝</span></div>
+      </section>
+    </div>
+    <div class="panel">
+      <div class="decor">💗 ✨ 🎀 ✨ 💗</div>
+      <h2>Keep smiling, Debadrita! 🥹💕</h2>
+      <p>Hope this little surprise makes your day a bit more special.</p>
+      <button class="primary" id="celebrateBtn">🎉 More confetti!</button>
+    </div>
+  </div>
+  <footer>Made with 💗 for Debadrita · A tiny birthday page</footer>
+</main>
+<script>
+const balloonColors = ['#ff86b2','#f7b5d0','#f7d0df','#d8b4f8','#ffcfdf','#ffd27d'];
+const balloonLayer = document.getElementById('balloons');
+for(let i=0;i<18;i++){
+  const b=document.createElement('div'); b.className='balloon';
+  b.style.left=(Math.random()*100)+'%'; b.style.background=balloonColors[i%balloonColors.length];
+  b.style.animationDuration=(11+Math.random()*12)+'s'; b.style.animationDelay=(-Math.random()*20)+'s';
+  b.style.transform='scale('+(0.65+Math.random()*.65)+')'; balloonLayer.appendChild(b);
+}
+function confetti(count=100){
+ const colors=['#ff5c99','#ffc1d8','#d9a7f5','#ffd166','#ff8fab','#fff'];
+ for(let i=0;i<count;i++){
+  const p=document.createElement('i');p.className='confetti';p.style.left=Math.random()*100+'vw';
+  p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.animationDelay=Math.random()*.8+'s';
+  p.style.transform='rotate('+Math.random()*360+'deg)';document.body.appendChild(p);setTimeout(()=>p.remove(),4500);
+ }
+}
+document.getElementById('openBtn').addEventListener('click',()=>{
+ document.getElementById('intro').classList.add('hidden');
+ document.getElementById('surprise').classList.remove('hidden');
+ confetti(130); window.scrollTo({top:0,behavior:'smooth'});
+});
+const cake=document.getElementById('cake');
+function cutCake(){
+ if(cake.classList.contains('cut')) return;
+ cake.classList.add('cut'); document.getElementById('flame').textContent='✨';
+ document.getElementById('cakeMessage').textContent='Yayyy! Cake cut! Make your sweetest wish! 🎂💗';
+ confetti(90);
+}
+cake.addEventListener('click',cutCake);cake.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cutCake()}});
+document.getElementById('celebrateBtn').addEventListener('click',()=>confetti(150));
+// A tiny original tune made with Web Audio; browser requires a tap before sound can play.
+let audioCtx=null,musicTimer=null,musicPlaying=false;
+const notes=[523.25,659.25,783.99,659.25,698.46,783.99,880,783.99,659.25,523.25,587.33,659.25];
+function playTune(){
+ const AudioContext=window.AudioContext||window.webkitAudioContext;
+ if(!AudioContext){alert('Audio is not supported in this browser.');return}
+ if(musicPlaying){musicPlaying=false;clearInterval(musicTimer);document.getElementById('musicBtn').textContent='🎵 Play birthday tune';return}
+ audioCtx=audioCtx||new AudioContext();audioCtx.resume();musicPlaying=true;
+ document.getElementById('musicBtn').textContent='🔇 Stop birthday tune';
+ let idx=0;
+ const playNote=()=>{
+  if(!musicPlaying)return;
+  const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+  osc.type='sine';osc.frequency.value=notes[idx%notes.length];
+  gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.12,audioCtx.currentTime+.025);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.27);
+  osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.29);idx++;
+ };
+ playNote();musicTimer=setInterval(playNote,320);
+}
+document.getElementById('musicBtn').addEventListener('click',playTune);
+</script>
+</body>
+</html>
