@@ -11,6 +11,8 @@
 body{margin:0;font-family:"Trebuchet MS",system-ui,sans-serif;color:#7b3152;background:radial-gradient(circle at 15% 10%,#fff 0 3%,transparent 18%),linear-gradient(135deg,#ffe5ef,#fff5f9 48%,#ffd8e8);min-height:100vh;overflow-x:hidden}
 button{font:inherit;cursor:pointer;border:0}
 .hidden{display:none!important}
+.surprise-step{animation:stepIn .45s ease both}
+@keyframes stepIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 #balloons{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .balloon{position:absolute;bottom:-150px;width:46px;height:58px;border-radius:50% 50% 46% 46%;opacity:.78;animation:floatUp linear infinite}
 .balloon:before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:inherit;bottom:-4px;left:20px}
@@ -93,118 +95,84 @@ input[type=file]{display:none}
   </section>
 
   <div id="surprise" class="hidden">
-    <h1>Happy Birthday!<span>Debadrita 🎂💖</span></h1>
-    <p class="subtitle">May your day be full of smiles, love, laughter and lovely little memories. 🎀</p>
-    <div class="panel">
-      <div class="characters">
-        <div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div>
-        <div class="heart">♥</div>
-        <div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div>
-      </div>
-      <div class="decor">🎈 💕 🎈</div>
-      <h2>Make a wish, birthday girl! 🌟</h2>
-      <p>Tap the cake to cut it and celebrate! 👇</p>
-      <div class="cake-area">
-        <div class="cake" id="cake" role="button" tabindex="0" aria-label="Cut the birthday cake">
-          <div class="base"></div><div class="top"></div><div class="drip"></div><div class="candle"></div><div class="flame" id="flame">🔥</div>
-        </div>
-      </div>
+    <section class="panel surprise-step" id="stepCake">
+      <div class="pill">Step 1 of 5 · A sweet start 🎂</div>
+      <h1>Make a wish!<span>Debadrita 🎂💖</span></h1>
+      <p class="subtitle">Tap the cake to cut it. Your birthday song will play just for this moment! 🎵</p>
+      <div class="characters"><div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div><div class="heart">♥</div><div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div></div>
+      <div class="cake-area"><div class="cake" id="cake" role="button" tabindex="0" aria-label="Cut the birthday cake"><div class="base"></div><div class="top"></div><div class="drip"></div><div class="candle"></div><div class="flame" id="flame">🔥</div></div></div>
       <p id="cakeMessage">Tap the cake to cut it! 🎂</p>
-      <button class="secondary" id="musicBtn">🎵 Play birthday tune</button>
-    </div>
+      <button class="primary hidden" id="cakeNext">Next surprise →</button>
+    </section>
 
-    <div class="grid">
-      <section class="panel gallery-panel">
-        <h2>📸 Little moments, lots of memories</h2>
-        <p>A little gallery made just for you, Debadrita. 💗</p>
-        <div class="photo-gallery">
-          <figure class="photo-card"><img src="photos/debadrita-01.jpg" alt="Debadrita birthday memory 1" loading="lazy"><figcaption>Memory #1 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-02.jpg" alt="Debadrita birthday memory 2" loading="lazy"><figcaption>Memory #2 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-03.jpg" alt="Debadrita birthday memory 3" loading="lazy"><figcaption>Memory #3 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-04.jpg" alt="Debadrita birthday memory 4" loading="lazy"><figcaption>Memory #4 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-05.jpg" alt="Debadrita birthday memory 5" loading="lazy"><figcaption>Memory #5 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-06.jpg" alt="Debadrita birthday memory 6" loading="lazy"><figcaption>Memory #6 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-07.jpg" alt="Debadrita birthday memory 7" loading="lazy"><figcaption>Memory #7 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-08.jpg" alt="Debadrita birthday memory 8" loading="lazy"><figcaption>Memory #8 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-09.jpg" alt="Debadrita birthday memory 9" loading="lazy"><figcaption>Memory #9 💗</figcaption></figure>
-          <figure class="photo-card"><img src="photos/debadrita-10.jpg" alt="Debadrita birthday memory 10" loading="lazy"><figcaption>Memory #10 💗</figcaption></figure>
-        </div>
-      </section>
-      <section class="panel">
-        <h2>💌 A little birthday letter</h2>
-        <div class="note">Happiest Birthday re, Debadrita! 🎂❤️
+    <section class="panel surprise-step hidden" id="stepCharacters">
+      <div class="pill">Step 2 of 5 · A little friend-shaped surprise 🧸</div>
+      <div class="characters"><div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div><div class="heart">♥</div><div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div></div>
+      <h1>Little bear & panda<span>sending you lots of love 💗</span></h1>
+      <p class="subtitle">May your days be full of tiny joys, silly laughs, and people who make you feel special. 🎀</p>
+      <div class="decor">🧸 💕 🐼</div>
+      <button class="primary" data-next="stepGallery">Next surprise →</button>
+    </section>
 
-God bless you always. Hope your day is filled with happiness, laughter and lots of beautiful memories. ✨
+    <section class="panel surprise-step gallery-panel hidden" id="stepGallery">
+      <div class="pill">Step 3 of 5 · Little moments 📸</div>
+      <h1>Our memories<span>one picture at a time 💗</span></h1>
+      <p class="subtitle" id="photoCount">Memory 1 of 10</p>
+      <figure class="photo-card" style="max-width:520px;margin:0 auto 18px"><img id="singlePhoto" src="photos/debadrita-01.jpg" alt="Debadrita memory 1" style="width:100%;height:min(60vh,520px);object-fit:contain;background:#fff4f8;border-radius:12px"><figcaption id="singleCaption">Memory #1 💗</figcaption></figure>
+      <button class="secondary" id="prevPhoto">← Previous photo</button>
+      <button class="primary" id="nextPhoto">Next photo →</button>
+      <button class="primary hidden" id="galleryNext">Next surprise →</button>
+    </section>
 
-R sotti bolchi, tor sathe ghurte ba kothao jete gele je ki poriman moja hoy, setar kono tulonai nei! 😂💗 Ichhe kore, evabei shob shomoy hashi-khushi ar moja korte korte amader din gulo kete jak.
+    <section class="panel surprise-step hidden" id="stepNote">
+      <div class="pill">Step 4 of 5 · A note from the heart 💌</div>
+      <h1>For you, Debadrita<span>read this whenever you want 💗</span></h1>
+      <div class="note">Happiest Birthday, Debadrita! 🎂❤️🧸
 
-Ar ei bhabei shob shomoy ekta bhalo bondhu hoye pashe thakis. Tor sathe aro onek sundor sundor memory banano baki ache! 🫂💖
+Some people come into our lives and slowly become a beautiful part of our memories. And honestly, tui amar kache serokomi ekjon. 🥹💗
 
-Have a blast re! Always keep smiling! 🫶🏻
+R sotti bolchi, tor sathe ghurte jawa, eksathe hasha, paglamo kora ar choto choto bishoy niye moja korar moddhe je anondo ache, seta hoyto toke shob shomoy bole bojhate pari na. Kintu ei muhurto-gulo amar kache khub special. 🫶🏻✨
 
-<span class="signature">Once again, Happiest Birthday! 🎉💝</span></div>
-      </section>
-    </div>
-    <div class="panel">
+Jani na samne amader jibone koto kichu bodlabe, koto notun manush ashbe, koto kichu bodle jabe. Kintu ami chai, ajker ei sundor memory-gulor sathe amader bondhuttotao evabei theke jak. Jeno bohu bochor poreo amra ei din-gulo mone kore hashi, ar boli— “Mone ache, amra eksathe koto moja kortam?” 🥹💖
+
+Tor jibone jeno kokhono hashar karon-er obhab na hoy. Mon kharap-er dineo jeno abar hashar moto kichu khuje paash. Tor shob shopno puron hok, ar tui jemon, temoni nijer moto kore shob shomoy khushi thakish. ❤️
+
+Ar haan, tor sathe aro onek jaygay ghora, onek paglamo kora, ar onek sundor memory banano ekhono baki ache. Tai ei birthday-te sudhu etukui bolbo— bhalo thakis, khushi thakis, ar amader ei sundor bondhuttota jotno kore rakhish. 🫂💝
+
+Maybe ami prottekta kotha shob shomoy express korte pari na, but that doesn't mean the memories we share are any less special.
+
+<span class="signature">Once again, Happiest Birthday, Bubu! 🎂🎀
+
+May life give you a thousand reasons to smile, today and always. 💗✨</span></div>
+      <button class="primary" data-next="stepCelebrate">One last surprise →</button>
+    </section>
+
+    <section class="panel surprise-step hidden" id="stepCelebrate">
+      <div class="pill">Step 5 of 5 · The final celebration 🎉</div>
       <div class="decor">💗 ✨ 🎀 ✨ 💗</div>
-      <h2>Keep smiling, Debadrita! 🥹💕</h2>
-      <p>Hope this little surprise makes your day a bit more special.</p>
-      <button class="primary" id="celebrateBtn">🎉 More confetti!</button>
-    </div>
+      <h1>Happiest Birthday!<span>Keep shining, Debadrita! 🥹💕</span></h1>
+      <p class="subtitle">Hope this little surprise makes your day a bit more special. May life give you a thousand reasons to smile! 🎂💖</p>
+      <div class="characters"><div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div><div class="heart">♥</div><div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div></div>
+      <button class="primary" id="celebrateBtn">🎉 Celebrate with confetti!</button>
+    </section>
   </div>
   <footer>Made with 💗 for Debadrita · A tiny birthday page</footer>
 </main>
 <script>
-const balloonColors = ['#ff86b2','#f7b5d0','#f7d0df','#d8b4f8','#ffcfdf','#ffd27d'];
-const balloonLayer = document.getElementById('balloons');
-for(let i=0;i<18;i++){
-  const b=document.createElement('div'); b.className='balloon';
-  b.style.left=(Math.random()*100)+'%'; b.style.background=balloonColors[i%balloonColors.length];
-  b.style.animationDuration=(11+Math.random()*12)+'s'; b.style.animationDelay=(-Math.random()*20)+'s';
-  b.style.transform='scale('+(0.65+Math.random()*.65)+')'; balloonLayer.appendChild(b);
-}
-function confetti(count=100){
- const colors=['#ff5c99','#ffc1d8','#d9a7f5','#ffd166','#ff8fab','#fff'];
- for(let i=0;i<count;i++){
-  const p=document.createElement('i');p.className='confetti';p.style.left=Math.random()*100+'vw';
-  p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.animationDelay=Math.random()*.8+'s';
-  p.style.transform='rotate('+Math.random()*360+'deg)';document.body.appendChild(p);setTimeout(()=>p.remove(),4500);
- }
-}
-document.getElementById('openBtn').addEventListener('click',()=>{
- document.getElementById('intro').classList.add('hidden');
- document.getElementById('surprise').classList.remove('hidden');
- confetti(130); window.scrollTo({top:0,behavior:'smooth'});
-});
-const cake=document.getElementById('cake');
-function cutCake(){
- if(cake.classList.contains('cut')) return;
- cake.classList.add('cut'); document.getElementById('flame').textContent='✨';
- document.getElementById('cakeMessage').textContent='Yayyy! Cake cut! Make your sweetest wish! 🎂💗';
- confetti(90);
-}
-cake.addEventListener('click',cutCake);cake.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cutCake()}});
-document.getElementById('celebrateBtn').addEventListener('click',()=>confetti(150));
-// A tiny original tune made with Web Audio; browser requires a tap before sound can play.
-let audioCtx=null,musicTimer=null,musicPlaying=false;
-const notes=[523.25,659.25,783.99,659.25,698.46,783.99,880,783.99,659.25,523.25,587.33,659.25];
-function playTune(){
- const AudioContext=window.AudioContext||window.webkitAudioContext;
- if(!AudioContext){alert('Audio is not supported in this browser.');return}
- if(musicPlaying){musicPlaying=false;clearInterval(musicTimer);document.getElementById('musicBtn').textContent='🎵 Play birthday tune';return}
- audioCtx=audioCtx||new AudioContext();audioCtx.resume();musicPlaying=true;
- document.getElementById('musicBtn').textContent='🔇 Stop birthday tune';
- let idx=0;
- const playNote=()=>{
-  if(!musicPlaying)return;
-  const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
-  osc.type='sine';osc.frequency.value=notes[idx%notes.length];
-  gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.12,audioCtx.currentTime+.025);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.27);
-  osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.29);idx++;
- };
- playNote();musicTimer=setInterval(playNote,320);
-}
-document.getElementById('musicBtn').addEventListener('click',playTune);
+const balloonColors=['#ff86b2','#f7b5d0','#f7d0df','#d8b4f8','#ffcfdf','#ffd27d'];
+const balloonLayer=document.getElementById('balloons');
+for(let i=0;i<18;i++){const b=document.createElement('div');b.className='balloon';b.style.left=(Math.random()*100)+'%';b.style.background=balloonColors[i%balloonColors.length];b.style.animationDuration=(11+Math.random()*12)+'s';b.style.animationDelay=(-Math.random()*20)+'s';b.style.transform='scale('+(0.65+Math.random()*.65)+')';balloonLayer.appendChild(b)}
+function confetti(count=100){const colors=['#ff5c99','#ffc1d8','#d9a7f5','#ffd166','#ff8fab','#fff'];for(let i=0;i<count;i++){const p=document.createElement('i');p.className='confetti';p.style.left=Math.random()*100+'vw';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.animationDelay=Math.random()*.8+'s';p.style.transform='rotate('+Math.random()*360+'deg)';document.body.appendChild(p);setTimeout(()=>p.remove(),4500)}}
+function showStep(id){if(id==='stepNote')stopSong();document.querySelectorAll('.surprise-step').forEach(s=>s.classList.add('hidden'));const target=document.getElementById(id);target.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('openBtn').addEventListener('click',()=>{document.getElementById('intro').classList.add('hidden');document.getElementById('surprise').classList.remove('hidden');showStep('stepCake');confetti(80)});
+document.querySelectorAll('[data-next]').forEach(btn=>btn.addEventListener('click',()=>showStep(btn.dataset.next)));
+let photoIndex=1;const totalPhotos=10;function updatePhoto(){const img=document.getElementById('singlePhoto');img.src=`photos/debadrita-${String(photoIndex).padStart(2,'0')}.jpg`;img.alt=`Debadrita memory ${photoIndex}`;document.getElementById('photoCount').textContent=`Memory ${photoIndex} of ${totalPhotos}`;document.getElementById('singleCaption').textContent=`Memory #${photoIndex} 💗`;document.getElementById('prevPhoto').classList.toggle('hidden',photoIndex===1);document.getElementById('nextPhoto').classList.toggle('hidden',photoIndex===totalPhotos);document.getElementById('galleryNext').classList.toggle('hidden',photoIndex!==totalPhotos)}
+document.getElementById('prevPhoto').addEventListener('click',()=>{if(photoIndex>1){photoIndex--;updatePhoto()}});document.getElementById('nextPhoto').addEventListener('click',()=>{if(photoIndex<totalPhotos){photoIndex++;updatePhoto()}});document.getElementById('galleryNext').addEventListener('click',()=>showStep('stepNote'));
+let audioCtx=null;let songPlaying=false;let songNodes=[];let songTimer=null;function stopSong(){songPlaying=false;if(songTimer!==null){clearTimeout(songTimer);songTimer=null}songNodes.forEach(n=>{try{n.stop()}catch(e){}});songNodes=[]}
+// Start when the cake is cut, repeat through the surprises, and stop when the birthday note opens.
+function playBirthdaySong(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=audioCtx||new AC();audioCtx.resume();stopSong();songPlaying=true;const melody=[392,392,440,392,523.25,493.88,392,392,440,392,587.33,523.25,392,392,783.99,659.25,523.25,493.88,440,698.46,698.46,659.25,523.25,587.33,523.25];const beat=.34;function playLoop(){if(!songPlaying)return;const start=audioCtx.currentTime;melody.forEach((freq,i)=>{const osc=audioCtx.createOscillator(),gain=audioCtx.createGain(),t=start+i*beat;osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(.10,t+.025);gain.gain.exponentialRampToValueAtTime(.0001,t+beat*.88);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(t);osc.stop(t+beat);songNodes.push(osc)});songTimer=setTimeout(()=>{songNodes=[];playLoop()},melody.length*beat*1000+100)}playLoop()}
+const cake=document.getElementById('cake');function cutCake(){if(cake.classList.contains('cut'))return;cake.classList.add('cut');document.getElementById('flame').textContent='✨';document.getElementById('cakeMessage').textContent='Yayyy! Cake cut! Happy Birthday, Debadrita! 🎂💗';document.getElementById('cakeNext').classList.remove('hidden');confetti(100);playBirthdaySong()}
+cake.addEventListener('click',cutCake);cake.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cutCake()}});document.getElementById('cakeNext').addEventListener('click',()=>showStep('stepCharacters'));document.getElementById('celebrateBtn').addEventListener('click',()=>confetti(180));
 </script>
 </body>
 </html>
