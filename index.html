@@ -79,6 +79,7 @@ input[type=file]{display:none}
 </style>
 </head>
 <body>
+<audio id="birthdayTrack" src="dooron-dooron.mp3" preload="auto" loop></audio>
 <div id="balloons" aria-hidden="true"></div>
 <main>
   <div class="pill">🎀 A little birthday surprise 🎀</div>
@@ -98,7 +99,7 @@ input[type=file]{display:none}
     <section class="panel surprise-step" id="stepCake">
       <div class="pill">Step 1 of 5 · A sweet start 🎂</div>
       <h1>Make a wish!<span>Debadrita 🎂💖</span></h1>
-      <p class="subtitle">Tap the cake to cut it. Your birthday song will play just for this moment! 🎵</p>
+      <p class="subtitle">Tap the cake to cut it. Your song will play all the way through the surprise! 🎵</p>
       <div class="characters"><div class="char bear"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span></div><div class="heart">♥</div><div class="char panda"><i class="ear left"></i><i class="ear right"></i><span class="eye left"></span><span class="eye right"></span><span class="blush left"></span><span class="blush right"></span><span class="mouth">ᴗ</span><span class="bow">🎀</span></div></div>
       <div class="cake-area"><div class="cake" id="cake" role="button" tabindex="0" aria-label="Cut the birthday cake"><div class="base"></div><div class="top"></div><div class="drip"></div><div class="candle"></div><div class="flame" id="flame">🔥</div></div></div>
       <p id="cakeMessage">Tap the cake to cut it! 🎂</p>
@@ -156,6 +157,7 @@ May life give you a thousand reasons to smile, today and always. 💗✨</span><
       <button class="primary" id="celebrateBtn">🎉 Celebrate with confetti!</button>
     </section>
   </div>
+  <p id="musicHint" class="subtitle hidden">Tap here to start the birthday song: <button class="secondary" id="playMusicBtn">▶ Play song</button></p>
   <footer>Made with 💗 for Debadrita · A tiny birthday page</footer>
 </main>
 <script>
@@ -163,16 +165,16 @@ const balloonColors=['#ff86b2','#f7b5d0','#f7d0df','#d8b4f8','#ffcfdf','#ffd27d'
 const balloonLayer=document.getElementById('balloons');
 for(let i=0;i<18;i++){const b=document.createElement('div');b.className='balloon';b.style.left=(Math.random()*100)+'%';b.style.background=balloonColors[i%balloonColors.length];b.style.animationDuration=(11+Math.random()*12)+'s';b.style.animationDelay=(-Math.random()*20)+'s';b.style.transform='scale('+(0.65+Math.random()*.65)+')';balloonLayer.appendChild(b)}
 function confetti(count=100){const colors=['#ff5c99','#ffc1d8','#d9a7f5','#ffd166','#ff8fab','#fff'];for(let i=0;i<count;i++){const p=document.createElement('i');p.className='confetti';p.style.left=Math.random()*100+'vw';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.animationDelay=Math.random()*.8+'s';p.style.transform='rotate('+Math.random()*360+'deg)';document.body.appendChild(p);setTimeout(()=>p.remove(),4500)}}
-function showStep(id){if(id==='stepNote')stopSong();document.querySelectorAll('.surprise-step').forEach(s=>s.classList.add('hidden'));const target=document.getElementById(id);target.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
-document.getElementById('openBtn').addEventListener('click',()=>{document.getElementById('intro').classList.add('hidden');document.getElementById('surprise').classList.remove('hidden');showStep('stepCake');confetti(80)});
+function showStep(id){document.querySelectorAll('.surprise-step').forEach(s=>s.classList.add('hidden'));const target=document.getElementById(id);target.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+const birthdayTrack=document.getElementById('birthdayTrack');let trackStarted=false;function startTrack(){if(trackStarted)return;trackStarted=true;birthdayTrack.volume=0.9;birthdayTrack.play().catch(()=>{document.getElementById('musicHint').classList.remove('hidden')})}
+document.getElementById('openBtn').addEventListener('click',()=>{startTrack();document.getElementById('intro').classList.add('hidden');document.getElementById('surprise').classList.remove('hidden');showStep('stepCake');confetti(80)});
 document.querySelectorAll('[data-next]').forEach(btn=>btn.addEventListener('click',()=>showStep(btn.dataset.next)));
 let photoIndex=1;const totalPhotos=10;function updatePhoto(){const img=document.getElementById('singlePhoto');img.src=`photos/debadrita-${String(photoIndex).padStart(2,'0')}.jpg`;img.alt=`Debadrita memory ${photoIndex}`;document.getElementById('photoCount').textContent=`Memory ${photoIndex} of ${totalPhotos}`;document.getElementById('singleCaption').textContent=`Memory #${photoIndex} 💗`;document.getElementById('prevPhoto').classList.toggle('hidden',photoIndex===1);document.getElementById('nextPhoto').classList.toggle('hidden',photoIndex===totalPhotos);document.getElementById('galleryNext').classList.toggle('hidden',photoIndex!==totalPhotos)}
 document.getElementById('prevPhoto').addEventListener('click',()=>{if(photoIndex>1){photoIndex--;updatePhoto()}});document.getElementById('nextPhoto').addEventListener('click',()=>{if(photoIndex<totalPhotos){photoIndex++;updatePhoto()}});document.getElementById('galleryNext').addEventListener('click',()=>showStep('stepNote'));
-let audioCtx=null;let songPlaying=false;let songNodes=[];let songTimer=null;function stopSong(){songPlaying=false;if(songTimer!==null){clearTimeout(songTimer);songTimer=null}songNodes.forEach(n=>{try{n.stop()}catch(e){}});songNodes=[]}
-// Start when the cake is cut, repeat through the surprises, and stop when the birthday note opens.
-function playBirthdaySong(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=audioCtx||new AC();audioCtx.resume();stopSong();songPlaying=true;const melody=[392,392,440,392,523.25,493.88,392,392,440,392,587.33,523.25,392,392,783.99,659.25,523.25,493.88,440,698.46,698.46,659.25,523.25,587.33,523.25];const beat=.34;function playLoop(){if(!songPlaying)return;const start=audioCtx.currentTime;melody.forEach((freq,i)=>{const osc=audioCtx.createOscillator(),gain=audioCtx.createGain(),t=start+i*beat;osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(.10,t+.025);gain.gain.exponentialRampToValueAtTime(.0001,t+beat*.88);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(t);osc.stop(t+beat);songNodes.push(osc)});songTimer=setTimeout(()=>{songNodes=[];playLoop()},melody.length*beat*1000+100)}playLoop()}
-const cake=document.getElementById('cake');function cutCake(){if(cake.classList.contains('cut'))return;cake.classList.add('cut');document.getElementById('flame').textContent='✨';document.getElementById('cakeMessage').textContent='Yayyy! Cake cut! Happy Birthday, Debadrita! 🎂💗';document.getElementById('cakeNext').classList.remove('hidden');confetti(100);playBirthdaySong()}
-cake.addEventListener('click',cutCake);cake.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cutCake()}});document.getElementById('cakeNext').addEventListener('click',()=>showStep('stepCharacters'));document.getElementById('celebrateBtn').addEventListener('click',()=>confetti(180));
+function stopSong(){birthdayTrack.pause();birthdayTrack.currentTime=0}
+document.getElementById('playMusicBtn').addEventListener('click',()=>{birthdayTrack.play().catch(()=>{});document.getElementById('musicHint').classList.add('hidden')});
+const cake=document.getElementById('cake');function cutCake(){if(cake.classList.contains('cut'))return;cake.classList.add('cut');document.getElementById('flame').textContent='✨';document.getElementById('cakeMessage').textContent='Yayyy! Cake cut! Happy Birthday, Debadrita! 🎂💗';document.getElementById('cakeNext').classList.remove('hidden');confetti(100)}
+cake.addEventListener('click',cutCake);cake.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cutCake()}});document.getElementById('cakeNext').addEventListener('click',()=>showStep('stepCharacters'));document.getElementById('celebrateBtn').addEventListener('click',()=>{confetti(180);stopSong();document.getElementById('celebrateBtn').textContent='🎉 Happy Birthday, Debadrita!';});
 </script>
 </body>
 </html>
